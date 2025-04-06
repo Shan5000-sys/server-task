@@ -1,8 +1,9 @@
 {
-  "name": "server-task-frontend",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
+    "name": "server-task-frontend",
+    "version": "0.1.0",
+    "private": true,
+    "homepage": ".",                
+    "dependencies": {
     "@emotion/react": "^11.14.0",
     "@mui/icons-material": "^7.0.1",
     "@mui/material": "^7.0.1",
