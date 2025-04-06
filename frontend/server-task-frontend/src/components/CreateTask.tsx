@@ -38,46 +38,69 @@ const CreateTask: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 bg-white p-4 shadow rounded">
-      <input
-        name="taskId"
-        placeholder="Task ID"
-        onChange={handleChange}
-        value={formData.taskId}
-        required
-        className="border p-2 w-full"
-      />
-      <input
-        name="userId"
-        placeholder="User ID"
-        onChange={handleChange}
-        value={formData.userId}
-        required
-        className="border p-2 w-full"
-      />
-      <input
-        name="title"
-        placeholder="Title"
-        onChange={handleChange}
-        value={formData.title}
-        required
-        className="border p-2 w-full"
-      />
-      <textarea
-        name="description"
-        placeholder="Description"
-        onChange={handleChange}
-        value={formData.description}
-        className="border p-2 w-full"
-      />
+    <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 shadow-md rounded-lg">
+      <div>
+        <label htmlFor="taskId" className="block text-sm font-medium text-gray-700">Task ID</label>
+        <input
+          id="taskId"
+          name="taskId"
+          placeholder="Task ID"
+          onChange={handleChange}
+          value={formData.taskId}
+          required
+          className="border mt-1 p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="userId" className="block text-sm font-medium text-gray-700">User ID</label>
+        <input
+          id="userId"
+          name="userId"
+          placeholder="User ID"
+          onChange={handleChange}
+          value={formData.userId}
+          required
+          className="border mt-1 p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
+        <input
+          id="title"
+          name="title"
+          placeholder="Title"
+          onChange={handleChange}
+          value={formData.title}
+          required
+          className="border mt-1 p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          placeholder="Description"
+          onChange={handleChange}
+          value={formData.description}
+          className="border mt-1 p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+      </div>
+
       <button
         type="submit"
         disabled={loading}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
+        className={`w-full px-4 py-2 rounded text-white font-medium ${
+          loading ? 'bg-blue-300 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
+        }`}
       >
         {loading ? 'Saving...' : 'Create Task'}
       </button>
-      {message && <p className="text-sm mt-2">{message}</p>}
+
+      {message && <p className="text-sm mt-2 text-center">{message}</p>}
     </form>
   );
 };

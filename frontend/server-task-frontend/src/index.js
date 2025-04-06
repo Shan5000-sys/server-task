@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = require("react");
+const client_1 = require("react-dom/client");
+require("./index.css"); // ✅ Tailwind base
+const App_1 = require("./App");
+const root = client_1.default.createRoot(document.getElementById('root'));
+root.render(<react_1.default.StrictMode>
+    <App_1.default />
+  </react_1.default.StrictMode>);
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50c3giXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxpQ0FBMEI7QUFDMUIsNkNBQXdDO0FBQ3hDLHVCQUFxQixDQUFDLGtCQUFrQjtBQUN4QywrQkFBd0I7QUFFeEIsTUFBTSxJQUFJLEdBQUcsZ0JBQVEsQ0FBQyxVQUFVLENBQzlCLFFBQVEsQ0FBQyxjQUFjLENBQUMsTUFBTSxDQUFnQixDQUMvQyxDQUFDO0FBRUYsSUFBSSxDQUFDLE1BQU0sQ0FDVCxDQUFDLGVBQUssQ0FBQyxVQUFVLENBQ2Y7SUFBQSxDQUFDLGFBQUcsQ0FBQyxBQUFELEVBQ047RUFBQSxFQUFFLGVBQUssQ0FBQyxVQUFVLENBQUMsQ0FDcEIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgUmVhY3RET00gZnJvbSAncmVhY3QtZG9tL2NsaWVudCc7XG5pbXBvcnQgJy4vaW5kZXguY3NzJzsgLy8g4pyFIFRhaWx3aW5kIGJhc2VcbmltcG9ydCBBcHAgZnJvbSAnLi9BcHAnO1xuXG5jb25zdCByb290ID0gUmVhY3RET00uY3JlYXRlUm9vdChcbiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3Jvb3QnKSBhcyBIVE1MRWxlbWVudFxuKTtcblxucm9vdC5yZW5kZXIoXG4gIDxSZWFjdC5TdHJpY3RNb2RlPlxuICAgIDxBcHAgLz5cbiAgPC9SZWFjdC5TdHJpY3RNb2RlPlxuKTsiXX0=

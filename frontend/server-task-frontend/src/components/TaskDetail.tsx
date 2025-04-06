@@ -44,7 +44,6 @@ const TaskDetail: React.FC<TaskDetailProps> = ({ taskId, userId }) => {
     setMessage(null);
 
     try {
-      // Update the task
       const res = await fetch(`${API_BASE}/tasks`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -54,10 +53,8 @@ const TaskDetail: React.FC<TaskDetailProps> = ({ taskId, userId }) => {
       if (!res.ok) throw new Error('Failed to update task');
       const updatedTask = await res.json();
 
-      // If file selected and pre-signed URL exists
       if (selectedFile && updatedTask.imageUploadUrl) {
         await uploadImage(updatedTask.imageUploadUrl, selectedFile);
-
         try {
           const result = await processImage(updatedTask.taskId);
           setLabels(result.labels.map((label: any) => label.Name));
@@ -76,72 +73,93 @@ const TaskDetail: React.FC<TaskDetailProps> = ({ taskId, userId }) => {
     }
   };
 
-  if (!task) return <p>Loading task...</p>;
+  if (!task) return <p className="text-gray-500">Loading task...</p>;
 
   return (
-    <div className="bg-white p-6 rounded shadow space-y-4">
+    <div className="bg-white p-6 rounded-lg shadow space-y-6">
       <div>
-        <label className="font-semibold">Task ID:</label>
-        <p>{task.taskId}</p>
+        <label className="block text-sm font-semibold text-gray-700">Task ID:</label>
+        <p className="text-gray-800">{task.taskId}</p>
       </div>
 
       <div>
-        <label className="font-semibold">User ID:</label>
-        <p>{task.userId}</p>
+        <label className="block text-sm font-semibold text-gray-700">User ID:</label>
+        <p className="text-gray-800">{task.userId}</p>
       </div>
 
       <div>
-        <label className="font-semibold">Title:</label>
+        <label className="block text-sm font-semibold text-gray-700">Title:</label>
         {editing ? (
           <input
             name="title"
             value={task.title}
             onChange={handleChange}
-            className="border p-2 w-full"
+            className="mt-1 border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         ) : (
-          <p>{task.title}</p>
+          <p className="text-gray-800">{task.title}</p>
         )}
       </div>
 
       <div>
-        <label className="font-semibold">Description:</label>
+        <label className="block text-sm font-semibold text-gray-700">Description:</label>
         {editing ? (
           <textarea
             name="description"
             value={task.description}
             onChange={handleChange}
-            className="border p-2 w-full"
+            className="mt-1 border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         ) : (
-          <p>{task.description}</p>
+          <p className="text-gray-800">{task.description}</p>
         )}
       </div>
 
       {editing && (
         <div className="space-y-2">
-          <input type="file" accept="image/*" onChange={handleFileChange} />
-          {previewUrl && <img src={previewUrl} alt="Preview" className="w-48 rounded" />}
+          <label className="block text-sm font-medium text-gray-700">Upload Image:</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="block"
+          />
+          {previewUrl && (
+            <img src={previewUrl} alt="Preview" className="w-48 h-auto rounded border" />
+          )}
         </div>
       )}
 
-      {editing ? (
-        <button onClick={handleSave} disabled={saving} className="bg-blue-600 text-white px-4 py-2 rounded">
-          {saving ? 'Saving...' : 'Save'}
-        </button>
-      ) : (
-        <button onClick={() => setEditing(true)} className="bg-gray-300 text-black px-4 py-2 rounded">
-          Edit
-        </button>
-      )}
+      <div className="pt-4">
+        {editing ? (
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className={`w-full px-4 py-2 text-white font-medium rounded ${
+              saving ? 'bg-blue-300 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
+            }`}
+          >
+            {saving ? 'Saving...' : 'Save'}
+          </button>
+        ) : (
+          <button
+            onClick={() => setEditing(true)}
+            className="w-full px-4 py-2 bg-gray-300 hover:bg-gray-400 text-black font-medium rounded"
+          >
+            Edit
+          </button>
+        )}
+      </div>
 
-      {message && <p className="text-sm mt-2">{message}</p>}
+      {message && <p className="text-center text-sm mt-2">{message}</p>}
 
       {labels.length > 0 && (
-        <div>
-          <h3 className="font-semibold mt-4">Detected Labels:</h3>
-          <ul className="list-disc ml-6 text-sm">
-            {labels.map(label => <li key={label}>{label}</li>)}
+        <div className="pt-4">
+          <h3 className="text-sm font-semibold text-gray-700">Detected Labels:</h3>
+          <ul className="list-disc list-inside text-gray-700 text-sm">
+            {labels.map(label => (
+              <li key={label}>{label}</li>
+            ))}
           </ul>
         </div>
       )}
