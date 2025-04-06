@@ -14,4 +14,4 @@ frontend:
       - '**/*'
   cache:
     paths:
-      - frontend/server-task-frontend/node_modules/**/*  
+      - frontend/server-task-frontend/node_modules/**/*
