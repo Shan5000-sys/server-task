@@ -1,11 +1,11 @@
 import React from 'react';
 
-const AppHeader: React.FC = () => {
+const AppHeader = () => {
   return (
-    <header className="p-4 bg-white shadow">
-      <nav className="space-x-4">
-        <a href="/" className="hover:underline">Home</a>
-        <a href="/create" className="hover:underline">Create Task</a>
+    <header>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/create">Create Task</a>
       </nav>
     </header>
   );
